@@ -4,6 +4,8 @@ import 'package:pokedex/bloc/pokemonBloc.dart';
 import 'package:pokedex/bloc/pokemonState.dart';
 
 class PokedexView extends StatelessWidget {
+  final myController = TextEditingController();
+
   @override
   Widget build(BuildContext ctx) {
     return Scaffold(
@@ -17,9 +19,11 @@ class PokedexView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is PokemonPageLoadSuccess) {
-            return GridView.builder(
+            final gridView = GridView.builder(
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
               gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
               itemCount: state.pokemonListings.length,
               itemBuilder: (context, index) {
                 return Card(
@@ -33,6 +37,24 @@ class PokedexView extends StatelessWidget {
                   ),
                 );
               },
+            );
+
+            return Column(
+              children: [
+                Row(
+                  children: [
+                    Flexible(
+                      child: TextField(
+                        controller: myController,
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: gridView,
+                ),
+              ],
             );
           } else if (state is PokemonPageLoadFailed) {
             return Center(
