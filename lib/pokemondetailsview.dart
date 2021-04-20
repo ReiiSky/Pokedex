@@ -19,23 +19,26 @@ class PokemonDetailsView extends StatelessWidget {
                 : Center(
                     child: Column(children: [
                     Expanded(
+                        flex: 1,
                         child: Card(
-                      child: Column(
-                        children: [
-                          Image.network(details.imageUrl),
-                          Text(details.name),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: details.types
-                                .map((e) => _pokemonTypeView(e))
-                                .toList(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.network(details.imageUrl),
+                              Text(details.name),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: details.types
+                                    .map((e) => _pokemonTypeView(e))
+                                    .toList(),
+                              ),
+                              Text(
+                                  'ID: ${details.id}  -  Weight: ${details.weight}  -  Height: ${details.height}')
+                            ],
                           ),
-                          Text(
-                              'ID: ${details.id}  -  Weight: ${details.weight}  -  Height: ${details.height}')
-                        ],
-                      ),
-                    )),
+                        )),
                     Expanded(
+                      flex: 2,
                       child: SizedBox(
                         width: double.infinity,
                         child: Card(
