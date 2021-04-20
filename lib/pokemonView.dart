@@ -45,6 +45,8 @@ class PokedexView extends StatelessWidget {
                   children: [
                     Flexible(
                       child: TextField(
+                        decoration:
+                            InputDecoration(hintText: "Search Pokemon Name"),
                         controller: myController,
                         textAlign: TextAlign.center,
                       ),
