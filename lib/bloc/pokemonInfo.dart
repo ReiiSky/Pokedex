@@ -27,7 +27,7 @@ class PokemonInfo {
       imageUrl: json["sprites"]["front_default"],
       types: types,
       height: json["height"],
-      width: json["width"],
+      width: json["weight"],
     );
   }
 }

@@ -39,7 +39,7 @@ class PokemonRepository {
     try {
       final response = await client.get(uri);
       final json = jsonDecode(response.body);
-      PokemonSpecies.fromJSON(json);
+      return PokemonSpecies.fromJSON(json);
     } catch (e) {
       print(e);
     }

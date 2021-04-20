@@ -19,7 +19,7 @@ class PokemonDetailsCubit extends Cubit<PokemonDetails> {
         types: info.types,
         height: info.height,
         weight: info.width,
-        description: species != null ? species.description : ""));
+        description: species != null ? species.description : "empty"));
   }
 
   void clearPokemonDetails() => emit(null);
