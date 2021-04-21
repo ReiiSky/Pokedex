@@ -3,11 +3,14 @@ import 'package:flutter/foundation.dart';
 class PokemonListing {
   final int id;
   final String name;
+  int matchStart;
+  int matchEnd;
 
   String get imageURL =>
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png';
 
-  PokemonListing({@required this.id, @required this.name});
+  PokemonListing(
+      {@required this.id, @required this.name, this.matchStart, this.matchEnd});
 
   factory PokemonListing.fromJSON(Map<String, dynamic> json) {
     final name = json["name"];

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex/bloc/changeState.dart';
 import 'package:pokedex/bloc/navCubit.dart';
+import 'package:pokedex/pokemonSearchResultViews.dart';
 import 'package:pokedex/pokemonView.dart';
 import 'package:pokedex/pokemondetailsview.dart';
 
@@ -15,7 +16,10 @@ class AppNavigator extends StatelessWidget {
           MaterialPage(child: PokedexView()),
           if (state != null)
             if (state.page == "details")
-              MaterialPage(child: PokemonDetailsView())
+              MaterialPage(child: PokemonDetailsView()),
+          if (state != null)
+            if (state.page == "search")
+              MaterialPage(child: PokemonSearchResultView())
         ],
         onPopPage: (route, result) {
           BlocProvider.of<NavCubit>(context).popToPokedex();

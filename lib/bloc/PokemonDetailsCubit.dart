@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex/bloc/pokemonDetails.dart';
 import 'package:pokedex/bloc/pokemonInfo.dart';
 import 'package:pokedex/bloc/pokemonSpeciesInfo.dart';
+import 'package:pokedex/pokemonPageResponse.dart';
 import 'package:pokedex/pokemonRepository.dart';
+
+import 'SearchBloc.dart';
 
 class PokemonDetailsCubit extends Cubit<PokemonDetails> {
   final repo = PokemonRepository();
@@ -23,4 +27,23 @@ class PokemonDetailsCubit extends Cubit<PokemonDetails> {
   }
 
   void clearPokemonDetails() => emit(null);
+}
+
+class PokemonSearchCubit extends Cubit<PokemonList> {
+  final repo = PokemonRepository();
+  PokemonSearchCubit() : super(null);
+
+  void getPokemonWithSearch(String pattern) async {
+    final pokemons = await repo.getPokemonWithFilter(pattern);
+    emit(PokemonList(list: pokemons));
+  }
+
+  void clearPokemonSearch() => emit(null);
+}
+
+class PokemonList {
+  List<PokemonListing> list;
+  PokemonList({
+    @required this.list,
+  });
 }

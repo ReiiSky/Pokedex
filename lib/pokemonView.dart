@@ -1,12 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex/bloc/changeState.dart';
 import 'package:pokedex/bloc/navCubit.dart';
 import 'package:pokedex/bloc/pokemonBloc.dart';
 import 'package:pokedex/bloc/pokemonState.dart';
 
-class PokedexView extends StatelessWidget {
-  final myController = TextEditingController();
+final myController = TextEditingController();
 
+class PokedexView extends StatelessWidget {
   @override
   Widget build(BuildContext ctx) {
     return Scaffold(
@@ -76,18 +77,10 @@ class PokedexView extends StatelessWidget {
         // When the user presses the button, show an alert dialog containing
         // the text that the user has entered into the text field.
         onPressed: () {
-          showDialog(
-            context: ctx,
-            builder: (context) {
-              return AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text(myController.text),
-              );
-            },
-          );
+          BlocProvider.of<NavCubit>(ctx)
+              .showPokemonSearchResult(myController.text);
         },
-        tooltip: 'Show me the value!',
+        tooltip: "Search",
         child: Icon(Icons.text_fields),
       ),
     );

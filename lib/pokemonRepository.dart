@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:js';
 
 import 'package:http/http.dart' as http;
 import 'package:pokedex/bloc/pokemonInfo.dart';
@@ -30,7 +29,7 @@ class PokemonRepository {
     final json = jsonDecode(response.body);
 
     var pokemons = PokemonPageResponse.fromJSON(json);
-    List<PokemonListing> pokess = JsArray();
+    List<PokemonListing> pokess = new List();
 
     for (var i = 0; i < pokemons.pokemonListings.length; i++) {
       var poke = pokemons.pokemonListings[i];
